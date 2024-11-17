@@ -18,8 +18,12 @@
         "Destinations": {
           "Destination1": {
             "Address": "http://yalb.api:8080/api/Department"
+          },
+          "Destination2": {
+            "Address": "http://yalb-two.api:8080/api/Department"
           }
-        }
+        },
+        "LoadBalancingPolicy": "RoundRobin"
       }
     }
   }

@@ -8,6 +8,15 @@ services:
       - 5000:8080
       - 5001:8081
 
+  yalb-two.api:
+    image: ${DOCKER_REGISTRY-}yalbapi
+    build:
+      context: .
+      dockerfile: YALB.Api/Dockerfile
+    ports:
+      - 6000:8080
+      - 6001:8081
+
   yalb.loadbalancer:
     image: ${DOCKER_REGISTRY-}yalbloadbalancer
     build:

@@ -19,13 +19,21 @@ namespace YALB.Api.Controllers
         [HttpGet]
         public IActionResult GetEmployees()
         {
-            return Ok(employeeList);
+            string requestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}{HttpContext.Request.QueryString}";
+            GenericResponse<Employee> employeeResponse = new GenericResponse<Employee>();
+            employeeResponse.DataList = employeeList;
+            employeeResponse.Url = requestUrl;
+            return Ok(employeeResponse);
         }
 
         [HttpGet("{id}")]
         public IActionResult GetEmployeeById(int id)
         {
-            return Ok(employeeList.FirstOrDefault(x => x.Id == id));
+            string requestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}{HttpContext.Request.QueryString}";
+            GenericResponse<Employee> employeeResponse = new GenericResponse<Employee>();
+            employeeResponse.Data = employeeList.FirstOrDefault(x => x.Id == id);
+            employeeResponse.Url = requestUrl;
+            return Ok(employeeResponse);
         }
     }
 }

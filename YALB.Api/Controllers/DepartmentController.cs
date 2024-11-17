@@ -17,13 +17,21 @@ namespace YALB.Api.Controllers
         [HttpGet]
         public IActionResult GetDepartments()
         {
-            return Ok(departmentList);
+            string requestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}{HttpContext.Request.QueryString}";
+            GenericResponse<Department> departmentResponse = new GenericResponse<Department>();
+            departmentResponse.DataList = departmentList;
+            departmentResponse.Url = requestUrl;
+            return Ok(departmentResponse);
         }
 
         [HttpGet("{id}")]
         public IActionResult GetDepartmentById(int id)
         {
-            return Ok(departmentList.FirstOrDefault(x => x.Id == id));
+            string requestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}{HttpContext.Request.QueryString}";
+            GenericResponse<Department> departmentResponse = new GenericResponse<Department>();
+            departmentResponse.Data = departmentList.FirstOrDefault(x => x.Id == id);
+            departmentResponse.Url = requestUrl;
+            return Ok(departmentResponse);
         }
     }
 }
