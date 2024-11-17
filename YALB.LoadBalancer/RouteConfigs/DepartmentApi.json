@@ -1,0 +1,26 @@
+{
+  "ReverseProxy": {
+    "Routes": {
+      "department-routes": {
+        "ClusterId": "department-cluster",
+        "Match": {
+          "Path": "/department/{**catch-all}"
+        },
+        "Transforms": [
+          {
+            "PathRemovePrefix": "/department"
+          }
+        ]
+      }
+    },
+    "Clusters": {
+      "department-cluster": {
+        "Destinations": {
+          "Destination1": {
+            "Address": "https://localhost:7257/api/Department"
+          }
+        }
+      }
+    }
+  }
+}

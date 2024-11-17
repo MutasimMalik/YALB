@@ -1,5 +1,9 @@
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Configuration.AddJsonFile("RouteConfigs/EmployeeApi.json", optional: false, reloadOnChange: true);
+builder.Configuration.AddJsonFile("RouteConfigs/DepartmentApi.json", optional: false, reloadOnChange: true);
+
+builder.Services.AddReverseProxy().LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -15,6 +19,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.MapReverseProxy();
 
 app.UseHttpsRedirection();
 

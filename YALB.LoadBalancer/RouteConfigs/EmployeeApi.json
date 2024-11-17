@@ -1,0 +1,26 @@
+{
+  "ReverseProxy": {
+    "Routes": {
+      "employee-routes": {
+        "ClusterId": "employee-cluster",
+        "Match": {
+          "Path": "/employee/{**catch-all}"
+        },
+        "Transforms": [
+          {
+            "PathRemovePrefix": "/employee"
+          }
+        ]
+      }
+    },
+    "Clusters": {
+      "employee-cluster": {
+        "Destinations": {
+          "Destination1": {
+            "Address": "https://localhost:7257/api/Employee"
+          }
+        }
+      }
+    }
+  }
+}
