@@ -17,7 +17,7 @@
       "department-cluster": {
         "Destinations": {
           "Destination1": {
-            "Address": "https://localhost:7257/api/Department"
+            "Address": "http://yalb.api:8080/api/Department"
           }
         }
       }
